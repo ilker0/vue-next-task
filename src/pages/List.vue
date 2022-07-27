@@ -1,10 +1,14 @@
 <template>
-  <Search @onSearch="onSearch" />
+  <search @onSearch="onSearch" />
+  <table />
+  <pagination :total="page.totalElements" @onChangePage="onChangePage" />
 </template>
 
 <script>
 import EventService from '@/services/EventService'
 import Search from '@/components/Search.vue'
+import Pagination from '@/components/Pagination.vue'
+import Table from '@/components/Table.vue'
 
 const service = new EventService()
 
@@ -12,7 +16,9 @@ export default {
   name: 'List',
 
   components: {
-    Search
+    Search,
+    Pagination,
+    Table
   },
 
   data() {
@@ -45,7 +51,12 @@ export default {
         ...this.params,
         keyword: value
       }
+
       this.fetchList()
+    },
+
+    onChangePage(value) {
+      console.log(value)
     }
   },
 
