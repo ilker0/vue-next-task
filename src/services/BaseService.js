@@ -1,9 +1,13 @@
+import Config from '@/config'
 import axios from 'axios'
 
 class BaseService {
   constructor(baseURL) {
     this.http = axios.create({
-      baseURL
+      baseURL,
+      params: {
+        apikey: Config.API_KEY
+      }
     })
   }
 
@@ -24,4 +28,4 @@ class BaseService {
   }
 }
 
-export { BaseService }
+export default BaseService
