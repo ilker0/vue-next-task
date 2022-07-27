@@ -1,28 +1,39 @@
 <template>
-  <div>
-    <div>asdasdads</div>
-  </div>
+  <Filter />
 </template>
 
 <script>
 import EventService from '@/services/EventService'
+import Filter from '@/components/Filter.vue'
 
 const service = new EventService()
 
 export default {
+  name: 'List',
+
+  components: {
+    Filter
+  },
+
   data() {
     return {
-      loading: false
+      data: [],
+      page: {},
+      loading: false,
+      columns: []
     }
   },
 
   methods: {
-    async fetchList() {
+    async fetchList(params) {
       try {
         this.loading = true
+        const { data } = await service.list({ ...params })
 
-        const result = await service.list()
-      } catch {
+        this.page = data?.page
+        this.data = data?._embedded?.events
+      } catch (error) {
+        console.error('List fetch error ->', error)
       } finally {
         this.loading = false
       }

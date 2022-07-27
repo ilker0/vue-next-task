@@ -6,9 +6,9 @@ class EventService extends BaseService {
     super(`${Config.API_URL}`)
   }
 
-  async list() {
+  async list(params) {
     try {
-      const result = await super.get('/events.json')
+      const result = await super.get('/events', { params })
       return result
     } catch (error) {
       throw error

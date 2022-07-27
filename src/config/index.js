@@ -1,6 +1,6 @@
 const config = {
-  API_URL: process.env.VUE_APP_API_URL,
-  API_KEY: process.env.VUE_APP_API_KEY
+  API_URL: import.meta.env.VITE_API_URL,
+  API_KEY: import.meta.env.VITE_API_KEY
 }
 
 export default config
