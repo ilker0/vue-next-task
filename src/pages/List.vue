@@ -1,10 +1,10 @@
 <template>
-  <Filter />
+  <Search @onSearch="onSearch" />
 </template>
 
 <script>
 import EventService from '@/services/EventService'
-import Filter from '@/components/Filter.vue'
+import Search from '@/components/Search.vue'
 
 const service = new EventService()
 
@@ -12,23 +12,24 @@ export default {
   name: 'List',
 
   components: {
-    Filter
+    Search
   },
 
   data() {
     return {
       data: [],
       page: {},
+      params: {},
       loading: false,
       columns: []
     }
   },
 
   methods: {
-    async fetchList(params) {
+    async fetchList() {
       try {
         this.loading = true
-        const { data } = await service.list({ ...params })
+        const { data } = await service.list({ ...this.params, ...this.page })
 
         this.page = data?.page
         this.data = data?._embedded?.events
@@ -37,6 +38,14 @@ export default {
       } finally {
         this.loading = false
       }
+    },
+
+    onSearch(value) {
+      this.params = {
+        ...this.params,
+        keyword: value
+      }
+      this.fetchList()
     }
   },
 
