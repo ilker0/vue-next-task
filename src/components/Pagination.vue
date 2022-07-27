@@ -1,6 +1,6 @@
 <template>
   <div class="pagination">
-    <button>Prev</button>
+    <button @click="page = page - 1" :disabled="page === 2">Prev</button>
 
     <button
       class="page"
@@ -10,18 +10,19 @@
         active: page === item
       }"
       @click="onChangePageHandle"
+      v-show="!(item > page + 1 || item < page - 1) && item < pages"
     >
       {{ item }}
     </button>
 
-    <button>Next</button>
+    <button @click="page = page + 2" :disabled="page === pages">Next</button>
 
     <select v-model="size" @change="onChangePageHandle">
-      <option>10</option>
-      <option>20</option>
-      <option>30</option>
-      <option>40</option>
-      <option>50</option>
+      <option :value="10">10</option>
+      <option :value="20">20</option>
+      <option :value="30">30</option>
+      <option :value="40">40</option>
+      <option :value="50">50</option>
     </select>
   </div>
 </template>
@@ -33,14 +34,15 @@ export default {
   data() {
     return {
       size: 10,
-      page: 1
+      page: 2
     }
   },
 
   props: {
     total: {
       type: Number,
-      default: 0
+      default: 0,
+      required: true
     }
   },
 
