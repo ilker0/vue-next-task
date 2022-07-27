@@ -25,6 +25,7 @@ export default {
     return {
       data: [],
       page: {},
+      pagination: {},
       params: {},
       loading: false,
       columns: []
@@ -35,7 +36,9 @@ export default {
     async fetchList() {
       try {
         this.loading = true
-        const { data } = await service.list({ ...this.params, ...this.page })
+
+        const { params, pagination } = this
+        const { data } = await service.list({ ...params, ...pagination })
 
         this.page = data?.page
         this.data = data?._embedded?.events
@@ -56,7 +59,8 @@ export default {
     },
 
     onChangePage(value) {
-      console.log(value)
+      this.pagination = value
+      this.fetchList()
     }
   },
 

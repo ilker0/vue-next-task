@@ -1,6 +1,6 @@
 <template>
   <div class="pagination">
-    <button @click="page = page - 1" :disabled="page === 2">Prev</button>
+    <button @click="onClickPrevHandle" :disabled="page === 1">Prev</button>
 
     <button
       class="page"
@@ -9,15 +9,15 @@
       :class="{
         active: page === item
       }"
-      @click="onChangePageHandle"
-      v-show="!(item > page + 1 || item < page - 1) && item < pages"
+      @click="onClickPageHandle(item)"
+      v-show="!(item > page + 4 || item < page) && item < pages"
     >
       {{ item }}
     </button>
 
-    <button @click="page = page + 2" :disabled="page === pages">Next</button>
+    <button @click="onClickNextHandle" :disabled="page === pages">Next</button>
 
-    <select v-model="size" @change="onChangePageHandle">
+    <select v-model="size" @change="onChangeSizeHandle">
       <option :value="10">10</option>
       <option :value="20">20</option>
       <option :value="30">30</option>
@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       size: 10,
-      page: 2
+      page: 1
     }
   },
 
@@ -53,9 +53,30 @@ export default {
   },
 
   methods: {
-    onChangePageHandle() {
+    onChangeSizeHandle() {
       const { page, size } = this
-      this.$emit('onChangePage', { page, size })
+      this.$emit('onChangePage', { page, size: +size })
+    },
+
+    onClickPageHandle(item) {
+      this.page = item
+      const { page, size } = this
+
+      this.$emit('onChangePage', { page, size: +size })
+    },
+
+    onClickNextHandle() {
+      this.page = this.page + 1
+      const { page, size } = this
+
+      this.$emit('onChangePage', { page, size: +size })
+    },
+
+    onClickPrevHandle() {
+      this.page = this.page - 1
+      const { page, size } = this
+
+      this.$emit('onChangePage', { page, size: +size })
     }
   }
 }
