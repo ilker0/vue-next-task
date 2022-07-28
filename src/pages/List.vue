@@ -1,7 +1,9 @@
 <template>
-  <search @onSearch="onSearch" />
-  <table />
-  <pagination :total="page.totalElements" @onChangePage="onChangePage" />
+  <div style="height: 100%; width: 100%">
+    <Search @onSearch="onSearch" />
+    <Table :columns="columns" :dataSource="data" />
+    <Pagination :total="page.totalElements" @onChangePage="onChangePage" />
+  </div>
 </template>
 
 <script>
@@ -25,10 +27,22 @@ export default {
     return {
       data: [],
       page: {},
-      pagination: {},
+      pagination: {
+        page: 1,
+        size: 10
+      },
       params: {},
       loading: false,
-      columns: []
+      columns: [
+        {
+          key: 'name',
+          title: 'Name'
+        },
+        {
+          key: 'type',
+          title: 'Type'
+        }
+      ]
     }
   },
 

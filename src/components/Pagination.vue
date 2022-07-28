@@ -10,7 +10,7 @@
         active: page === item
       }"
       @click="onClickPageHandle(item)"
-      v-show="!(item > page + 4 || item < page) && item < pages"
+      v-show="!(item > page + 4 || item < page)"
     >
       {{ item }}
     </button>

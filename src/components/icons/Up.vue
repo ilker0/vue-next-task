@@ -1,0 +1,26 @@
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="1.1"
+    id="Layer_1"
+    x="0px"
+    y="0px"
+    width="28px"
+    height="28px"
+    viewBox="0 0 64 64"
+    enable-background="new 0 0 64 64"
+    xml:space="preserve"
+  >
+    <g>
+      <polyline
+        fill="none"
+        stroke="#000000"
+        stroke-width="2"
+        stroke-linejoin="bevel"
+        stroke-miterlimit="10"
+        points="15,40 32,23    49,40  "
+      />
+    </g>
+  </svg>
+</template>
