@@ -1,0 +1,13 @@
+.list-page {
+  padding: 40px;
+
+  &-search {
+    margin-bottom: 20px;
+  }
+
+  &-pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

@@ -1,8 +1,12 @@
 <template>
-  <div style="height: 100%; width: 100%">
-    <Search @onSearch="onSearch" />
+  <div class="list-page">
+    <Search class="list-page-search" @onSearch="onSearch" />
     <Table :columns="columns" :dataSource="data" />
-    <Pagination :total="page.totalElements" @onChangePage="onChangePage" />
+    <Pagination
+      class="list-page-pagination"
+      :total="page.totalElements"
+      @onChangePage="onChangePage"
+    />
   </div>
 </template>
 
@@ -83,3 +87,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../assets/styles/pages/list.scss';
+</style>

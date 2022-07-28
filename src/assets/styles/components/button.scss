@@ -1,0 +1,12 @@
+.button {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.25rem 0.5rem;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

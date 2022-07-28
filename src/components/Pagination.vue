@@ -1,8 +1,8 @@
 <template>
   <div class="pagination">
-    <button @click="onClickPrevHandle" :disabled="page === 1">Prev</button>
+    <Button @click="onClickPrevHandle" :disabled="page === 1">Prev</Button>
 
-    <button
+    <Button
       class="page"
       v-for="item in pages"
       :key="item"
@@ -13,9 +13,9 @@
       v-show="!(item > page + 4 || item < page)"
     >
       {{ item }}
-    </button>
+    </Button>
 
-    <button @click="onClickNextHandle" :disabled="page === pages">Next</button>
+    <Button @click="onClickNextHandle" :disabled="page === pages">Next</Button>
 
     <select v-model="size" @change="onChangeSizeHandle">
       <option :value="10">10</option>
@@ -28,8 +28,14 @@
 </template>
 
 <script>
+import Button from './Button.vue'
+
 export default {
   name: 'Pagination',
+
+  components: {
+    Button
+  },
 
   data() {
     return {

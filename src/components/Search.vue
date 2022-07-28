@@ -1,13 +1,19 @@
 <template>
   <div class="search">
     <input v-model.trim="searchText" />
-    <button class="search-button" @click="onClickSearchHandle">Search</button>
+    <Button @click="onClickSearchHandle">Search</Button>
   </div>
 </template>
 
 <script>
+import Button from './Button.vue'
+
 export default {
   name: 'Filter',
+
+  components: {
+    Button
+  },
 
   data() {
     return {
