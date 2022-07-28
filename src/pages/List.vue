@@ -44,8 +44,27 @@ export default {
           title: 'Name'
         },
         {
-          key: 'type',
-          title: 'Type'
+          key: 'priceRanges',
+          title: 'Price',
+          render: (value) => {
+            return `Min: ${value?.[0].min || '-'} / Max: ${
+              value?.[0]?.max || '-'
+            }`
+          }
+        },
+        {
+          key: 'dates',
+          title: 'Date',
+          render: (value) => {
+            return value?.start?.dateTime
+          }
+        },
+        {
+          key: 'ticketLimit',
+          title: 'Ticket Limit',
+          render: (value) => {
+            return value?.info
+          }
         }
       ]
     }
