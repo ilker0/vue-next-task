@@ -1,4 +1,8 @@
 .pagination {
+  display: flex;
+  margin-top: 20px;
+  justify-content: flex-end;
+
   button {
     margin-right: 8px;
   }

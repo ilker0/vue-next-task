@@ -1,0 +1,57 @@
+.detail-page {
+  padding: 50px 100px;
+
+  &-loading {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-banner {
+    max-height: 500px;
+    object-fit: cover;
+  }
+
+  &-date {
+    color: #666;
+    margin: 30px 0 15px;
+  }
+
+  &-name {
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 15px;
+    word-break: break-word;
+  }
+
+  &-promoter {
+    margin-top: 15px;
+    color: #e04307;
+  }
+
+  &-products {
+    margin-top: 40px;
+  }
+
+  &-product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #ccc;
+
+    button {
+      margin-left: 10px;
+    }
+  }
+
+  &-limit {
+    margin-top: 15px;
+  }
+}

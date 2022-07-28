@@ -17,7 +17,7 @@ class EventService extends BaseService {
 
   async detail(id) {
     try {
-      const result = await super.get(`/events/${id}.json`)
+      const result = await super.get(`/events/${id}`)
       return result
     } catch (error) {
       throw error

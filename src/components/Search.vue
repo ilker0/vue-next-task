@@ -1,6 +1,11 @@
 <template>
   <div class="search">
-    <input placeholder="Keyword" class="input" v-model.trim="searchText" />
+    <input
+      placeholder="Keyword"
+      class="input"
+      v-model.trim="searchText"
+      v-on:keyup.enter="onClickSearchHandle"
+    />
     <Button class="button-primary" @click="onClickSearchHandle">
       Search <SearchIcon class="search-icon" />
     </Button>
@@ -8,8 +13,8 @@
 </template>
 
 <script>
-import Button from './Button.vue'
-import SearchIcon from './icons/Search.vue'
+import Button from '@/components/Button.vue'
+import SearchIcon from '@/components/icons/Search.vue'
 
 export default {
   name: 'Filter',
@@ -34,6 +39,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/styles/components/input.scss';
-@import '../assets/styles/components/search.scss';
+@import '@/assets/styles/components/input.scss';
+@import '@/assets/styles/components/search.scss';
 </style>

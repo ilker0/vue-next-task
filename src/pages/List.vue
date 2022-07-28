@@ -7,19 +7,12 @@
       :loading="loading"
       @onClickRow="onClickRow"
     />
-    <Pagination
-      v-if="data.length > 0"
-      class="list-page-pagination"
-      :total="page.totalElements"
-      @onChangePage="onChangePage"
-    />
   </div>
 </template>
 
 <script>
 import EventService from '@/services/EventService'
 import Search from '@/components/Search.vue'
-import Pagination from '@/components/Pagination.vue'
 import Table from '@/components/Table.vue'
 import dayjs from 'dayjs'
 
@@ -30,17 +23,14 @@ export default {
 
   components: {
     Search,
-    Pagination,
     Table
   },
 
   data() {
     return {
       data: [],
-      page: {},
       pagination: {
-        page: 1,
-        size: 10
+        size: 200
       },
       params: {},
       loading: false,
@@ -69,7 +59,13 @@ export default {
           key: 'ticketLimit',
           title: 'Ticket Limit',
           render: (value) => {
-            return value?.info || '-'
+            return value?.info
+              ? `${
+                  value?.info.length > 50
+                    ? value?.info.slice(0, 50) + '...'
+                    : value?.info
+                }`
+              : '-'
           }
         }
       ]
@@ -84,7 +80,6 @@ export default {
         const { params, pagination } = this
         const { data } = await service.list({ ...params, ...pagination })
 
-        this.page = data?.page
         this.data = data?._embedded?.events
       } catch (error) {
         console.error('List fetch error ->', error)
@@ -102,11 +97,6 @@ export default {
       this.fetchList()
     },
 
-    onChangePage(value) {
-      this.pagination = value
-      this.fetchList()
-    },
-
     onClickRow(data) {
       this.$router.push(`/detail/${data.id}`)
     }
@@ -119,5 +109,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/styles/pages/list.scss';
+@import '@/assets/styles/pages/list.scss';
 </style>

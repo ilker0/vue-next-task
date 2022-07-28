@@ -8,5 +8,5 @@
 </template>
 
 <style lang="scss" scoped>
-@import '../assets/styles/components/spinner.scss';
+@import '@/assets/styles/components/spinner.scss';
 </style>

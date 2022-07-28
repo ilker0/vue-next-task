@@ -97,6 +97,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/styles/components/pagination.scss';
-@import '../assets/styles/components/select.scss';
+@import '@/assets/styles/components/pagination.scss';
+@import '@/assets/styles/components/select.scss';
 </style>
