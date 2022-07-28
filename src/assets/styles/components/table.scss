@@ -15,6 +15,19 @@
       cursor: pointer;
       padding: 10px;
       font-weight: bold;
+
+      &:hover {
+        background-color: #f2f2f2;
+      }
+    }
+  }
+
+  &-column {
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-left: 8px;
     }
   }
 

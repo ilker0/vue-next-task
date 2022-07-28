@@ -2,12 +2,16 @@
   <table class="data-table">
     <thead class="data-table-thead">
       <tr>
-        <th v-for="column in columns" :key="column.key">
-          <div>
+        <th
+          v-for="column in columns"
+          :key="column.key"
+          @click="onClickColumnHandle(column)"
+        >
+          <div class="data-table-column">
             <span> {{ column.title }}</span>
             <div v-if="sort && sort.key === column.key" class="table-sort">
-              <DownIcon v-if="sort.type === 'ASC'" />
-              <UpIcon v-else />
+              <DownIcon width="14px" height="14px" v-if="sort.type === 'ASC'" />
+              <UpIcon width="14px" height="14px" v-else />
             </div>
           </div>
         </th>
@@ -89,6 +93,14 @@ export default {
     getValue(column, data) {
       const { key, render } = column
       return render ? render(data[key], data) : data[key]
+    },
+
+    onClickColumnHandle(value) {
+      const { key } = value
+      this.sort = {
+        key,
+        type: this.sort && this.sort?.type === 'ASC' ? 'DESC' : 'ASC'
+      }
     },
 
     onClickRowHandle(data) {

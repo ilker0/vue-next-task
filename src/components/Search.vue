@@ -27,9 +27,7 @@ export default {
 
   methods: {
     onClickSearchHandle() {
-      if (!!this.searchText.length) {
-        this.$emit('onSearch', this.searchText)
-      }
+      this.$emit('onSearch', this.searchText)
     }
   }
 }
