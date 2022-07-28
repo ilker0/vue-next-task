@@ -1,7 +1,12 @@
 <template>
   <div class="list-page">
     <Search class="list-page-search" @onSearch="onSearch" />
-    <Table :columns="columns" :dataSource="data" :loading="loading" />
+    <Table
+      :columns="columns"
+      :dataSource="data"
+      :loading="loading"
+      @onClickRow="onClickRow"
+    />
     <Pagination
       v-if="data.length > 0"
       class="list-page-pagination"
@@ -16,6 +21,7 @@ import EventService from '@/services/EventService'
 import Search from '@/components/Search.vue'
 import Pagination from '@/components/Pagination.vue'
 import Table from '@/components/Table.vue'
+import dayjs from 'dayjs'
 
 const service = new EventService()
 
@@ -47,7 +53,7 @@ export default {
           key: 'priceRanges',
           title: 'Price',
           render: (value) => {
-            return `Min: ${value?.[0].min || '-'} / Max: ${
+            return `Min: $${value?.[0].min || '-'} / Max: $${
               value?.[0]?.max || '-'
             }`
           }
@@ -56,14 +62,14 @@ export default {
           key: 'dates',
           title: 'Date',
           render: (value) => {
-            return value?.start?.dateTime
+            return dayjs(value?.start?.dateTime).format('MM-DD-YYYY')
           }
         },
         {
           key: 'ticketLimit',
           title: 'Ticket Limit',
           render: (value) => {
-            return value?.info
+            return value?.info || '-'
           }
         }
       ]
@@ -99,6 +105,10 @@ export default {
     onChangePage(value) {
       this.pagination = value
       this.fetchList()
+    },
+
+    onClickRow(data) {
+      this.$router.push(`/detail/${data.id}`)
     }
   },
 

@@ -30,6 +30,7 @@
         v-for="(data, index) in formatData"
         :key="index"
         class="table-row"
+        @click="onClickRowHandle(data)"
       >
         <td v-for="column in columns" :key="column.key">
           {{ getValue(column, data) }}
@@ -88,6 +89,10 @@ export default {
     getValue(column, data) {
       const { key, render } = column
       return render ? render(data[key], data) : data[key]
+    },
+
+    onClickRowHandle(data) {
+      this.$emit('onClickRow', data)
     }
   }
 }
