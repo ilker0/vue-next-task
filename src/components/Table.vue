@@ -13,8 +13,24 @@
         </th>
       </tr>
     </thead>
+
     <tbody class="data-table-body">
-      <tr v-for="(data, index) in formatData" :key="index" class="table-row">
+      <tr v-if="loading">
+        <div class="data-table-loading">
+          <Spinner />
+        </div>
+      </tr>
+
+      <p v-else-if="!loading && !formatData.length" class="data-table-notfound">
+        Data not found
+      </p>
+
+      <tr
+        v-else
+        v-for="(data, index) in formatData"
+        :key="index"
+        class="table-row"
+      >
         <td v-for="column in columns" :key="column.key">
           {{ getValue(column, data) }}
         </td>
@@ -26,13 +42,15 @@
 <script>
 import DownIcon from '@/components/icons/Down.vue'
 import UpIcon from '@/components/icons/Up.vue'
+import Spinner from '@/components/Spinner.vue'
 
 export default {
   name: 'Table',
 
   components: {
     DownIcon,
-    UpIcon
+    UpIcon,
+    Spinner
   },
 
   data() {
@@ -52,6 +70,11 @@ export default {
       type: Array,
       default: [],
       required: true
+    },
+
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
 

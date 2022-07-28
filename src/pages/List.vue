@@ -1,8 +1,9 @@
 <template>
   <div class="list-page">
     <Search class="list-page-search" @onSearch="onSearch" />
-    <Table :columns="columns" :dataSource="data" />
+    <Table :columns="columns" :dataSource="data" :loading="loading" />
     <Pagination
+      v-if="data.length > 0"
       class="list-page-pagination"
       :total="page.totalElements"
       @onChangePage="onChangePage"

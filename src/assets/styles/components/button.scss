@@ -1,10 +1,24 @@
 .button {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
   user-select: none;
-  padding: 0.25rem 0.5rem;
+  padding: 4px 15px;
+  font-size: 14px;
+  border-radius: 2px;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(217, 217, 217);
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.85);
+  height: 32px;
+
+  &-primary {
+    background-color: #1890ff;
+    color: #fff;
+    border: 1px solid #1890ff;
+  }
 
   &:disabled {
     cursor: not-allowed;

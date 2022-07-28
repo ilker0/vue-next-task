@@ -1,0 +1,22 @@
+.input {
+  box-sizing: border-box;
+  font-feature-settings: 'tnum';
+  position: relative;
+  display: inline-block;
+  min-width: 0px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 1.5715;
+  background-color: rgb(255, 255, 255);
+  background-image: none;
+  margin: 0px;
+  font-variant: tabular-nums;
+  list-style: none;
+  padding: 4px 11px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(217, 217, 217);
+  border-image: initial;
+  border-radius: 2px;
+  transition: all 0.3s ease 0s;
+}

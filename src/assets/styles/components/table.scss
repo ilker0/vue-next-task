@@ -29,4 +29,17 @@
       padding: 10px;
     }
   }
+
+  &-loading {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    position: absolute;
+    left: 50%;
+  }
+
+  &-notfound {
+    font-size: 16px;
+    text-align: center;
+  }
 }

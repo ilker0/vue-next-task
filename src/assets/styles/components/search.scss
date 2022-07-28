@@ -1,0 +1,12 @@
+.search {
+  display: flex;
+  align-items: center;
+
+  button {
+    margin-left: 8px;
+  }
+
+  &-icon {
+    margin-left: 8px;
+  }
+}

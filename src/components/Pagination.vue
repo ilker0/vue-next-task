@@ -1,6 +1,8 @@
 <template>
   <div class="pagination">
-    <Button @click="onClickPrevHandle" :disabled="page === 1">Prev</Button>
+    <Button @click="onClickPrevHandle" :disabled="page === 1">
+      <LeftIcon />
+    </Button>
 
     <Button
       class="page"
@@ -15,9 +17,11 @@
       {{ item }}
     </Button>
 
-    <Button @click="onClickNextHandle" :disabled="page === pages">Next</Button>
+    <Button @click="onClickNextHandle" :disabled="page === pages">
+      <RightIcon />
+    </Button>
 
-    <select v-model="size" @change="onChangeSizeHandle">
+    <select class="select" v-model="size" @change="onChangeSizeHandle">
       <option :value="10">10</option>
       <option :value="20">20</option>
       <option :value="30">30</option>
@@ -29,12 +33,16 @@
 
 <script>
 import Button from './Button.vue'
+import LeftIcon from './icons/Left.vue'
+import RightIcon from './icons/Right.vue'
 
 export default {
   name: 'Pagination',
 
   components: {
-    Button
+    Button,
+    LeftIcon,
+    RightIcon
   },
 
   data() {
@@ -87,3 +95,8 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../assets/styles/components/pagination.scss';
+@import '../assets/styles/components/select.scss';
+</style>
