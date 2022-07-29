@@ -5,29 +5,33 @@
     </div>
 
     <div class="detail-page-content" v-else>
+      <p class="detail-page-name">{{ formatData.name }}</p>
+
       <img class="detail-page-banner" :src="formatData.image" alt="" />
 
-      <p class="detail-page-date">{{ formatData.date }}</p>
-      <p class="detail-page-name">{{ formatData.name }}</p>
-      <p class="detail-page-price">{{ formatData.price }}</p>
-      <p class="detail-page-promoter">{{ formatData.promoter.name }}</p>
-      <p class="detail-page-limit">
-        Ticket Limit: {{ formatData.ticketLimit?.info || '-' }}
-      </p>
-      <div class="detail-page-products">
-        <div
-          class="detail-page-product"
-          v-for="product in formatData.products"
-          :key="product.id"
-        >
-          {{ product.name }}
+      <div class="detail-page-info">
+        <div>
+          <p class="detail-page-date">{{ formatData.date }}</p>
+          <p class="detail-page-price">{{ formatData.price }}</p>
+          <p class="detail-page-promoter">{{ formatData.promoter.name }}</p>
+          <p class="detail-page-limit">
+            Ticket Limit: {{ formatData.ticketLimit }}
+          </p>
+          <div class="detail-page-products">
+            <div
+              class="detail-page-product"
+              v-for="product in formatData.products"
+              :key="product.id"
+            >
+              {{ product.name }}
 
-          <Button class="button-primary">Buy</Button>
+              <Button class="button-primary">Buy Now</Button>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <img :src="formatData.seatmap?.staticUrl" alt="" />
-      <!-- <p class="detail-page-code">Code: {{ formatData.code }}</p> -->
+        <img :src="formatData.seatmap?.staticUrl" alt="" />
+      </div>
     </div>
   </div>
 </template>
@@ -57,29 +61,20 @@ export default {
 
   computed: {
     formatData() {
-      const {
-        code,
-        dates,
-        name,
-        priceRanges,
-        images,
-        products,
-        promoter,
-        ticketLimit,
-        seatmap
-      } = this.data
       return {
-        code,
-        date: dayjs(dates.start.dateTime).format('MMMM DD YYYY'),
-        name,
-        price: `Min: $${priceRanges?.[0].min || '-'} / Max: $${
-          priceRanges?.[0]?.max || '-'
+        code: this.data?.code || '-',
+        date: dayjs(this.data?.dates.start.dateTime).format('MMMM DD YYYY'),
+        name: this.data?.name || '-',
+        price: `Min: $${this.data?.priceRanges?.[0].min || '-'} / Max: $${
+          this.data?.priceRanges?.[0]?.max || '-'
         }`,
-        image: images.sort((a, b) => (a.height > b.height ? -1 : 1))?.[0].url,
-        products,
-        promoter,
-        ticketLimit,
-        seatmap
+        image: this.data?.images.sort((a, b) =>
+          a.height > b.height ? -1 : 1
+        )?.[0].url,
+        products: this.data?.products || [],
+        promoter: this.data?.promoter || '-',
+        ticketLimit: this.data?.ticketLimit?.info || '-',
+        seatmap: this.data?.seatmap || '-'
       }
     }
   },
