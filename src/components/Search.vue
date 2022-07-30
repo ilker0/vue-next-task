@@ -1,12 +1,17 @@
 <template>
   <div class="search">
     <input
+      data-testid="search-input"
       placeholder="Keyword"
       class="input"
       v-model.trim="searchText"
       v-on:keyup.enter="onClickSearchHandle"
     />
-    <Button class="button-primary" @click="onClickSearchHandle">
+    <Button
+      data-testid="search"
+      class="button-primary"
+      @click="onClickSearchHandle"
+    >
       Search <SearchIcon class="search-icon" />
     </Button>
   </div>

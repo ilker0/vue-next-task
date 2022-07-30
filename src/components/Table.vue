@@ -6,6 +6,7 @@
           v-for="column in columns"
           :key="column.key"
           @click="onClickColumnHandle(column)"
+          data-testid="column"
         >
           <div class="data-table-column">
             <span> {{ column.title }}</span>
@@ -13,8 +14,13 @@
               v-if="sort && sort.column.key === column.key"
               class="table-sort"
             >
-              <DownIcon width="14px" height="14px" v-if="sort.type === 'ASC'" />
-              <UpIcon width="14px" height="14px" v-else />
+              <DownIcon
+                data-testid="down-icon"
+                width="14px"
+                height="14px"
+                v-if="sort.type === 'ASC'"
+              />
+              <UpIcon data-testid="up-icon" width="14px" height="14px" v-else />
             </div>
           </div>
         </th>
@@ -24,11 +30,15 @@
     <tbody class="data-table-body">
       <tr v-if="loading">
         <div class="data-table-loading">
-          <Spinner />
+          <Spinner data-testid="loading" />
         </div>
       </tr>
 
-      <p v-else-if="!loading && !formatData.length" class="data-table-notfound">
+      <p
+        v-else-if="!loading && !formatData.length"
+        class="data-table-notfound"
+        data-testid="not-found"
+      >
         Data not found
       </p>
 
@@ -38,6 +48,7 @@
         :key="index"
         class="table-row"
         @click="onClickRowHandle(data)"
+        data-testid="row"
       >
         <td v-for="column in columns" :key="column.key">
           {{ getValue(column, data) }}
@@ -120,8 +131,8 @@ export default {
 
   methods: {
     getValue(column, data) {
-      const { key, render } = column
-      return render ? render(data[key], data) : data[key]
+      const { key } = column
+      return column?.render ? column?.render(data[key], data) : data[key]
     },
 
     onClickColumnHandle(column) {

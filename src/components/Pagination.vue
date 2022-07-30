@@ -1,14 +1,23 @@
 <template>
   <div class="pagination">
-    <Button @click="onClickDoublePrevHandle" :disabled="page === 1">
+    <Button
+      data-testid="double-prev"
+      @click="onClickDoublePrevHandle"
+      :disabled="page === 1"
+    >
       <DoubleLeftIcon />
     </Button>
 
-    <Button @click="onClickPrevHandle" :disabled="page === 1">
+    <Button
+      data-testid="prev"
+      @click="onClickPrevHandle"
+      :disabled="page === 1"
+    >
       <LeftIcon />
     </Button>
 
     <Button
+      data-testid="page"
       class="page"
       v-for="item in pages"
       :key="item"
@@ -20,15 +29,28 @@
       {{ item }}
     </Button>
 
-    <Button @click="onClickNextHandle" :disabled="page + 1 > pageLength">
+    <Button
+      data-testid="next"
+      @click="onClickNextHandle"
+      :disabled="page + 1 > pageLength"
+    >
       <RightIcon />
     </Button>
 
-    <Button @click="onClickDoubleNextHandle" :disabled="page + 1 > pageLength">
+    <Button
+      data-testid="double-next"
+      @click="onClickDoubleNextHandle"
+      :disabled="page + 1 > pageLength"
+    >
       <DoubleRightIcon />
     </Button>
 
-    <select class="select" v-model="size" @change="onChangeSizeHandle">
+    <select
+      data-testid="page-size"
+      class="select"
+      v-model="size"
+      @change="onChangeSizeHandle"
+    >
       <option :value="10">10</option>
       <option :value="20">20</option>
       <option :value="30">30</option>

@@ -9,6 +9,7 @@
   &-content {
     display: flex;
     flex-direction: column;
+    font-size: 18px;
   }
 
   &-banner {
@@ -19,6 +20,16 @@
   &-date {
     color: #666;
     margin: 15px 0;
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+  &-price {
+    span {
+      font-weight: bold;
+    }
   }
 
   &-name {
@@ -54,6 +65,10 @@
 
   &-limit {
     margin-top: 15px;
+
+    span {
+      font-weight: bold;
+    }
   }
 
   &-info {

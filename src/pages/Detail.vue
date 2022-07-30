@@ -11,12 +11,17 @@
 
       <div class="detail-page-info">
         <div class="detail-page-info_left">
-          <p class="detail-page-date">{{ formatData.date }}</p>
-          <p class="detail-page-price">{{ formatData.price }}</p>
-          <p class="detail-page-promoter">{{ formatData.promoter.name }}</p>
-          <p class="detail-page-limit">
-            Ticket Limit: {{ formatData.ticketLimit }}
+          <p class="detail-page-date">
+            <span>Date:</span> {{ formatData.date }}
           </p>
+          <p class="detail-page-price">
+            <span>Price:</span> {{ formatData.price }}
+          </p>
+          <p class="detail-page-limit">
+            <span>Ticket Limit:</span> {{ formatData.ticketLimit }}
+          </p>
+          <p class="detail-page-promoter">{{ formatData.promoter.name }}</p>
+
           <div class="detail-page-products">
             <div
               class="detail-page-product"
@@ -39,13 +44,12 @@
 <script>
 import Spinner from '@/components/Spinner.vue'
 import Button from '@/components/Button.vue'
-import EventService from '@/services/EventService'
 import dayjs from 'dayjs'
-
-const service = new EventService()
 
 export default {
   name: 'Detail',
+
+  inject: ['eventService'],
 
   components: {
     Spinner,
@@ -83,8 +87,8 @@ export default {
     async fetchDetail() {
       try {
         this.loading = true
+        const { data } = await this.eventService.detail(this.$route.params.id)
 
-        const { data } = await service.detail(this.$route.params.id)
         this.data = data
       } catch (error) {
         console.error('Detail fetch error ->', error)

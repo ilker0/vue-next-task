@@ -11,15 +11,14 @@
 </template>
 
 <script>
-import EventService from '@/services/EventService'
 import Search from '@/components/Search.vue'
 import Table from '@/components/Table.vue'
 import dayjs from 'dayjs'
 
-const service = new EventService()
-
 export default {
   name: 'List',
+
+  inject: ['eventService'],
 
   components: {
     Search,
@@ -78,7 +77,10 @@ export default {
         this.loading = true
 
         const { params, pagination } = this
-        const { data } = await service.list({ ...params, ...pagination })
+        const { data } = await this.eventService.list({
+          ...params,
+          ...pagination
+        })
 
         this.data = data?._embedded?.events
       } catch (error) {

@@ -3,7 +3,7 @@ import BaseService from './BaseService'
 
 class EventService extends BaseService {
   constructor() {
-    super(`${Config.API_URL}`)
+    super(`${Config.API_URL}`, `${Config.API_KEY}`)
   }
 
   async list(params) {
