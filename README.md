@@ -1,8 +1,6 @@
 # Tarfin Javascript Developer Task
 
-## Demo
-
-https://admirable-licorice-6b8d9e.netlify.app/
+**Preview**: https://admirable-licorice-6b8d9e.netlify.app/
 
 Your task is to build a basic table component with search, pagination, and sort features.
 
