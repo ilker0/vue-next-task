@@ -10,7 +10,7 @@
       <img class="detail-page-banner" :src="formatData.image" alt="" />
 
       <div class="detail-page-info">
-        <div>
+        <div class="detail-page-info_left">
           <p class="detail-page-date">{{ formatData.date }}</p>
           <p class="detail-page-price">{{ formatData.price }}</p>
           <p class="detail-page-promoter">{{ formatData.promoter.name }}</p>
