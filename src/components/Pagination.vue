@@ -1,18 +1,10 @@
 <template>
   <div class="pagination">
-    <Button
-      data-testid="double-prev"
-      @click="onClickDoublePrevHandle"
-      :disabled="page === 1"
-    >
+    <Button data-testid="double-prev" @click="page = 1" :disabled="page === 1">
       <DoubleLeftIcon />
     </Button>
 
-    <Button
-      data-testid="prev"
-      @click="onClickPrevHandle"
-      :disabled="page === 1"
-    >
+    <Button data-testid="prev" @click="page = page - 1" :disabled="page === 1">
       <LeftIcon />
     </Button>
 
@@ -24,14 +16,14 @@
       :class="{
         'button-outline': page === item
       }"
-      @click="onClickPageHandle(item)"
+      @click="page = item"
     >
       {{ item }}
     </Button>
 
     <Button
       data-testid="next"
-      @click="onClickNextHandle"
+      @click="page = page + 1"
       :disabled="page + 1 > pageLength"
     >
       <RightIcon />
@@ -39,7 +31,7 @@
 
     <Button
       data-testid="double-next"
-      @click="onClickDoubleNextHandle"
+      @click="page = pageLength"
       :disabled="page + 1 > pageLength"
     >
       <DoubleRightIcon />
@@ -49,7 +41,7 @@
       data-testid="page-size"
       class="select"
       v-model="size"
-      @change="onChangeSizeHandle"
+      @change="page = 1"
     >
       <option :value="10">10</option>
       <option :value="20">20</option>
@@ -119,49 +111,19 @@ export default {
     }
   },
 
-  methods: {
-    onChangeSizeHandle() {
-      this.page = 1
+  watch: {
+    page() {
       const { page, size } = this
-
       this.$emit('onChangePage', { page, size: +size })
     },
 
-    onClickPageHandle(item) {
-      this.page = item
+    size() {
       const { page, size } = this
-
-      this.$emit('onChangePage', { page, size: +size })
-    },
-
-    onClickNextHandle() {
-      this.page = this.page + 1
-      const { page, size } = this
-
-      this.$emit('onChangePage', { page, size: +size })
-    },
-
-    onClickPrevHandle() {
-      this.page = this.page - 1
-      const { page, size } = this
-
-      this.$emit('onChangePage', { page, size: +size })
-    },
-
-    onClickDoublePrevHandle() {
-      this.page = 1
-      const { page, size } = this
-
-      this.$emit('onChangePage', { page, size: +size })
-    },
-
-    onClickDoubleNextHandle() {
-      this.page = this.pageLength
-      const { page, size } = this
-
       this.$emit('onChangePage', { page, size: +size })
     }
-  }
+  },
+
+  methods: {}
 }
 </script>
 
