@@ -121,9 +121,7 @@ export default {
       const { page, size } = this
       this.$emit('onChangePage', { page, size: +size })
     }
-  },
-
-  methods: {}
+  }
 }
 </script>
 
