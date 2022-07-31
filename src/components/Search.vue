@@ -24,6 +24,8 @@ import SearchIcon from '@/components/icons/Search.vue'
 export default {
   name: 'Filter',
 
+  emits: ['onSearch'],
+
   components: {
     Button,
     SearchIcon

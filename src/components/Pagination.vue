@@ -62,6 +62,8 @@ import DoubleLeftIcon from '@/components/icons/DoubleLeft.vue'
 export default {
   name: 'Pagination',
 
+  emits: ['onChangePage'],
+
   components: {
     Button,
     LeftIcon,

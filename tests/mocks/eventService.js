@@ -1,38 +1,38 @@
+import * as axios from 'axios'
+
 class EventService {
-  timeout(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms))
+  constructor(fakeTimer) {
+    this.fakeTimer = fakeTimer
   }
 
   list(_) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          data: {
-            _embedded: {
-              events: new Array(100).fill({}).map((_, index) => ({
-                name: 'name' + index,
-                priceRanges: [
-                  {
-                    type: 'standard',
-                    currency: 'USD',
-                    min: index,
-                    max: index + 10
-                  }
-                ],
-                dates: {
-                  start: {
-                    dateTime: '2022-09-13T00:15:00Z'
-                  }
-                },
-                ticketLimit: {
-                  info: 'There is an overall 8 ticket limit for this event.'
+    axios.get.mockImplementation(() =>
+      Promise.resolve({
+        data: {
+          _embedded: {
+            events: new Array(100).fill({}).map((_, index) => ({
+              name: 'name' + index,
+              priceRanges: [
+                {
+                  type: 'standard',
+                  currency: 'USD',
+                  min: index,
+                  max: index + 10
                 }
-              }))
-            }
+              ],
+              dates: {
+                start: {
+                  dateTime: '2022-09-13T00:15:00Z'
+                }
+              },
+              ticketLimit: {
+                info: 'There is an overall 8 ticket limit for this event.'
+              }
+            }))
           }
-        })
-      }, 2000)
-    })
+        }
+      })
+    )
   }
 
   detail(_) {
@@ -300,7 +300,7 @@ class EventService {
             code: 'PHI:EHS0812'
           }
         })
-      }, 2000)
+      }, this.fakeTimer)
     })
   }
 }

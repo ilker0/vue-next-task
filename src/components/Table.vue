@@ -73,6 +73,8 @@ import Pagination from '@/components/Pagination.vue'
 export default {
   name: 'Table',
 
+  emits: ['onClickRow'],
+
   components: {
     DownIcon,
     UpIcon,
@@ -120,8 +122,8 @@ export default {
           const bValue = this.getValue(column, b)
 
           return type === 'ASC'
-            ? aValue.localeCompare(bValue)
-            : bValue.localeCompare(aValue)
+            ? aValue.toUpperCase().localeCompare(bValue)
+            : bValue.toUpperCase().localeCompare(aValue)
         })
       }
 

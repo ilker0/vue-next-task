@@ -4,6 +4,10 @@
       <Spinner />
     </div>
 
+    <p v-else-if="error" data-testid="something-wrong">
+      Something went wrong !
+    </p>
+
     <div class="detail-page-content" v-else>
       <p class="detail-page-name">{{ formatData.name }}</p>
 
@@ -58,6 +62,7 @@ export default {
 
   data() {
     return {
+      error: null,
       data: null,
       loading: false
     }
@@ -87,11 +92,11 @@ export default {
     async fetchDetail() {
       try {
         this.loading = true
-        const { data } = await this.eventService.detail(this.$route.params.id)
+        const { data } = await this.eventService.detail(this.$route?.params?.id)
 
         this.data = data
       } catch (error) {
-        console.error('Detail fetch error ->', error)
+        this.error = true
       } finally {
         this.loading = false
       }

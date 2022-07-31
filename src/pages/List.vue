@@ -1,7 +1,9 @@
 <template>
   <div class="list-page">
     <Search class="list-page-search" @onSearch="onSearch" />
+    <p v-if="error" data-testid="something-wrong">Something went wrong !</p>
     <Table
+      v-else
       :columns="columns"
       :dataSource="data"
       :loading="loading"
@@ -27,6 +29,7 @@ export default {
 
   data() {
     return {
+      error: null,
       data: [],
       pagination: {
         size: 200
@@ -84,7 +87,7 @@ export default {
 
         this.data = data?._embedded?.events
       } catch (error) {
-        console.error('List fetch error ->', error)
+        this.error = true
       } finally {
         this.loading = false
       }
